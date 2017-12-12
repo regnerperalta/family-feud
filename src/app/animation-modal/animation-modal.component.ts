@@ -11,6 +11,7 @@ export class AnimationModalComponent implements OnInit {
   private DURATION: number = 5000;
   @Input() image: string;
   @Input() show: boolean;
+  @Input() duration: number;
   @Output() onHide = new EventEmitter<any>();
   
   // References to Modals
@@ -25,7 +26,7 @@ export class AnimationModalComponent implements OnInit {
   ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
     if (changes && changes["show"] && changes["show"].currentValue) {
       this.openAnimationModal();
-      this.delay(this.DURATION).then(a => this.closeAnimationModal());
+      this.delay(this.duration ? this.duration : this.DURATION).then(a => this.closeAnimationModal());
     }
   }
 
@@ -38,23 +39,6 @@ export class AnimationModalComponent implements OnInit {
   public delay(ms: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
-  /*
-  @HostListener('window:keyup', ['$event'])
-  keyEvent(event: KeyboardEvent) {
-    console.log("Entred AppComponent.keyEvent()");
-    if (event) {
-      // TODO: remove this - for test only
-      if (event.key.toUpperCase() == 'T') {
-        if (this.modalOpen) {
-          this.closeAnimationModal();
-        } else {
-          this.openAnimationModal();
-          this.delay(this.DURATION).then(a => this.closeAnimationModal());
-        }
-      }
-    } 
-  }
-  */
 
   private openAnimationModal() {
     console.log("Entered openAnimationModal()");

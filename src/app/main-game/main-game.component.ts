@@ -16,6 +16,7 @@ export class MainGameComponent implements OnInit {
 
   private BLINK_SPEED: number = 300;
   private NUMBER_OF_BLINKS: number = 3;
+  private DEFAULT_TIME_LIMIT: number = 5 * 1000;
 
   // Control lightbulbs
   private lightbulbs: LightBulb[];
@@ -25,6 +26,8 @@ export class MainGameComponent implements OnInit {
   private teamScores: number[];
   private teamImages: string[];
   private animations: string[][];
+  private animationDurations: number[][];
+  private animationSongs: any[][];
   private adults: boolean = true;
   private currentGame: number = 0;
   
@@ -42,6 +45,7 @@ export class MainGameComponent implements OnInit {
   private gameActive: boolean;
   private currentQuestion: number = 0;
   private answers: Answer[];
+  private timerActive: boolean;
   
   // Sound Effects
   private themeSong: any;
@@ -53,12 +57,12 @@ export class MainGameComponent implements OnInit {
   
   private showAnimation: boolean = false;
   private animation: string;
+  private animationDuration: number;
   private animationIndex: number = 0;
   private animationIndeces: number[];
 
   // References to Modals
   @ViewChild('strikes') strikesTag: ElementRef;
-  //@ViewChild('setup_modal') setupModalTag: ElementRef;
   private modalOpen: boolean = false;
 
   constructor(private renderer: Renderer2,
@@ -105,12 +109,41 @@ export class MainGameComponent implements OnInit {
       "/assets/images/animated/snowman02.gif",
       "/assets/images/animated/snowman03.gif",
       "/assets/images/animated/snowman04.gif"]));
-    
+
+    this.animationSongs = [];
+    this.animationSongs.push(this.createAnimationSongs([
+      "/assets/sound_effects/animation_songs/ChristmasBeat.wav",
+      "/assets/sound_effects/animation_songs/ChristmasBeat.wav",
+      "/assets/sound_effects/animation_songs/ChristmasBeat.wav",
+      "/assets/sound_effects/animation_songs/ChristmasBeat.wav"]));
+    this.animationSongs.push(this.createAnimationSongs([
+      "/assets/sound_effects/animation_songs/JingleBells.mp3",
+      "/assets/sound_effects/animation_songs/JingleBells.mp3",
+      "/assets/sound_effects/animation_songs/JingleBells.mp3",
+      "/assets/sound_effects/animation_songs/JingleBells.mp3"]));
+    this.animationSongs.push(this.createAnimationSongs([
+      "/assets/sound_effects/animation_songs/ChristmasBeat.wav",
+      "/assets/sound_effects/animation_songs/ChristmasBeat.wav",
+      "/assets/sound_effects/animation_songs/ChristmasBeat.wav",
+      "/assets/sound_effects/animation_songs/ChristmasBeat.wav"]));
+    this.animationSongs.push(this.createAnimationSongs([
+      "/assets/sound_effects/animation_songs/ChristmasBeat.wav",
+      "/assets/sound_effects/animation_songs/ChristmasBeat.wav",
+      "/assets/sound_effects/animation_songs/ChristmasBeat.wav",
+      "/assets/sound_effects/animation_songs/ChristmasBeat.wav"]));
+                  
+    this.animationDurations = [];
+    let DEFAULT_DURATION: number = 12;
+    this.animationDurations.push(this.createAnimationDurations([DEFAULT_DURATION, DEFAULT_DURATION, DEFAULT_DURATION, DEFAULT_DURATION]));
+    this.animationDurations.push(this.createAnimationDurations([DEFAULT_DURATION, DEFAULT_DURATION, DEFAULT_DURATION, DEFAULT_DURATION]));
+    this.animationDurations.push(this.createAnimationDurations([DEFAULT_DURATION, DEFAULT_DURATION, DEFAULT_DURATION, DEFAULT_DURATION]));
+    this.animationDurations.push(this.createAnimationDurations([DEFAULT_DURATION, DEFAULT_DURATION, DEFAULT_DURATION, DEFAULT_DURATION]));
+
     this.animationIndeces = [];
     this.animationIndeces.push(0);
-    this.animationIndeces.push(1);
-    this.animationIndeces.push(2);
-    this.animationIndeces.push(3);
+    this.animationIndeces.push(0);
+    this.animationIndeces.push(0);
+    this.animationIndeces.push(0);
     
     this.loadEmptyBoard();
     this.loadSoundEffects();
@@ -124,13 +157,26 @@ export class MainGameComponent implements OnInit {
     }
     return animations;
   }
-/*
-  private closeSetupModal() {
-    let setupModal = this.setupModalTag.nativeElement;
-    this.renderer.setStyle(setupModal, 'display', 'none');
-    this.modalOpen = false;
+
+  public createAnimationDurations(animationDurations: number[]) : number[] {
+    let durations: number[] = [];
+    for (let i = 0; i < animationDurations.length; i++) {
+      durations.push(animationDurations[i]);
+    }
+    return durations;
   }
-*/
+
+  public createAnimationSongs(animationSongUrls: string[]) : any[] {
+    let animationSongs: any[] = [];
+    for (let i = 0; i < animationSongUrls.length; i++) {
+      let song = new Audio();
+      song.src = animationSongUrls[i];
+      song.load();
+      animationSongs.push(song);
+    }
+    return animationSongs;
+  }
+
   private displayStrikes() {
     let strikes = this.strikesTag.nativeElement;
     this.renderer.setStyle(strikes, 'display', 'block');
@@ -143,10 +189,12 @@ export class MainGameComponent implements OnInit {
   }
 
   private guessedCorrect(answer: Answer) {
+    this.timerActive = false;
     this.gameScore += answer.Value;
   }
 
   private guessedWrong() {
+    this.timerActive = false;
     this.strike.play();
     this.numberOfStrikes++;
     this.displayStrikes();
@@ -179,12 +227,18 @@ export class MainGameComponent implements OnInit {
       if (event.key.toUpperCase() == 'R') this.numberOfStrikes = 0;
       if (event.key.toUpperCase() == 'W') this.themeSong.play();
       if (event.key.toUpperCase() == 'T') {
-        console.log("Entred AppComponent.keyEvent(T)");
-        //this.animationIndeces[0] == 4;
-        //this.animation = this.animations[0][this.animationIndeces[0]++];
+        this.timerActive = true;
+        let that = this;
+        setTimeout(function() { 
+          if (that.timerActive)
+            that.guessedWrong(); 
+        }, this.DEFAULT_TIME_LIMIT);
+        // TODO: change this to do the timer
+        /*
         this.animation = this.animations[Math.floor(this.animationIndex / 4)][Math.floor(this.animationIndex % 4)];
         this.animationIndex++;
         this.showAnimation = true;
+        */
       }
       /*
       if (event.key.toUpperCase() == 'O') this.lightbulbService.toggleAllLights(this.lightbulbs);
@@ -278,7 +332,7 @@ export class MainGameComponent implements OnInit {
     this.themeSong = new Audio();
     this.themeSong.src = "/assets/sound_effects/ThemeSongShort.wav";
     this.themeSong.load();
-
+    
     this.clang = new Audio();
     this.clang.src = "/assets/sound_effects/clang.wav";
     this.clang.load();
@@ -350,6 +404,8 @@ export class MainGameComponent implements OnInit {
     if (winningTeam == this.teamNames[3]) index = 3;
 
     this.animation = this.animations[index][(this.animationIndeces[index]++) % 4];
+    this.animationDuration = this.animationDurations[index][(this.animationIndeces[index]++) % 4]  * 1000;
+    this.animationSongs[index][(this.animationIndeces[index]++) % 4].play();
     this.showAnimation = true;
   }
 
