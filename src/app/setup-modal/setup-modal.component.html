@@ -1,0 +1,35 @@
+<div #setup_modal class="modal">
+  <div class="modal_bg abs"></div>
+  <div class="modal_content abs">
+      <div class="modal_title">Game Setup <span class="close_btn" (click)="closeSetupModal()">&times;</span></div>
+      <div class="container" style="width: 600px;">
+        <div class="col-xs-12 col-sm-6" style="padding-bottom: 20px; padding-top: 20px;">
+          <label for="team1">Team 1: </label>
+          <input type="text" [(ngModel)]="teamNames[0]" id="team1" name="team1" style="padding: 5px; padding-top: 10px;">
+        </div>
+        <div class="col-xs-12 col-sm-6" style="padding-bottom: 20px; padding-top: 20px;">
+          <label for="team2">Team 2: </label>
+          <input type="text" [(ngModel)]="teamNames[1]" id="team2" name="team2" style="padding: 5px; padding-top: 10px;">
+        </div>
+        <div class="col-xs-12 col-sm-6" style="padding-bottom: 20px; padding-top: 20px;">
+          <label for="team3">Team 3: </label>
+          <input type="text" [(ngModel)]="teamNames[2]" id="team3" name="team3" style="padding: 5px; padding-top: 10px;">
+        </div>
+        <div class="col-xs-12 col-sm-6" style="padding-bottom: 20px; padding-top: 20px;">
+          <label for="team4">Team 4: </label>
+          <input type="text" [(ngModel)]="teamNames[3]" id="team4" name="team4" style="padding: 5px; padding-top: 10px;">
+        </div>
+        <div class="col-xs-24 col-sm-12" style="padding-bottom: 20px; padding-top: 20px; text-align: center;">
+          <label for="kids_or_adults" style="padding-right: 20px; position: relative; top: -15px;">Kids </label>
+          <label class="switch">
+            <input [(ngModel)]="adults" type="checkbox" id="kids_or_adults" name="kids_or_adults">
+            <span id="kids_or_adults_switch" name="kids_or_adults_switch" class="slider round"></span>
+          </label>
+          <label for="kids_or_adults" style="padding-left: 20px; position: relative; top: -15px;">Adults</label>
+        </div>
+        <div class="tright" style="display: block">
+          <input type="button" name="" class="btn white" value="OK" (click)="closeSetupModal()">
+        </div>
+      </div>
+  </div>
+</div>

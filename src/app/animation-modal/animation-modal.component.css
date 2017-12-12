@@ -1,0 +1,10 @@
+.animation_container {
+    height: 600px;
+    width: 600px; 
+    background-color: white;
+}
+
+.animation {
+    height: 100%;
+    width: 100%; 
+}

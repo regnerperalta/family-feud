@@ -1,0 +1,62 @@
+<div #bracket_modal class="modal">
+    <div class="modal_bg abs"></div>
+    <div class="modal_content abs">
+        <div class="modal_title">2017 Family Feud Tournament - <span *ngIf="adults"> Adults </span> <span *ngIf="!adults"> Kids </span>Bracket <span class="close_btn" (click)="closeBracketModal()">&times;</span></div>
+        <div class="container " style="width: 1200px; height: 800px; background-color: black;">
+
+          <!-- All Lines -->
+          <div class="vertical_line" style="top: calc(5% + 39px); left: calc(5% + 125px); height: 106px;"></div>
+          <div class="horizontal_line" style="top: calc(5% + 145px); left: calc(5% + 125px); width: 290px;"></div>
+          <div class="vertical_line" style="top: calc(5% + 39px); right: calc(5% + 125px); height: 106px;"></div>
+          <div class="horizontal_line" style="top: calc(5% + 145px); right: calc(50% - 415px); width: 290px;"></div>
+
+          <div class="vertical_line" style="top: calc(20% + 39px); left: 50%; height: 60px;"></div>
+          <div class="vertical_line" style="bottom: calc(20% + 39px); left: 50%; height: 60px;"></div>
+          
+          <div class="vertical_line" style="bottom: calc(5% + 39px); left: calc(5% + 125px); height: 106px;"></div>
+          <div class="horizontal_line" style="bottom: calc(5% + 145px); left: calc(5% + 125px); width: 290px;"></div>
+          <div class="vertical_line" style="bottom: calc(5% + 39px); right: calc(5% + 125px); height: 106px;"></div>
+          <div class="horizontal_line" style="bottom: calc(5% + 145px); right: calc(50% - 415px); width: 290px;"></div>
+
+          <div class="bracket_box" style="position: absolute; top: 5%; left: 5%">
+            <div class="team_name">{{teamNames[0]}}</div>
+            <div class="score">{{teamScores[0]}}</div>
+          </div>
+          <div class="bracket_box" style="position: absolute; top: 5%; right: 5%">
+            <div class="team_name">{{teamNames[1]}}</div>
+            <div class="score">{{teamScores[1]}}</div>
+          </div>
+          <div class="bracket_box" style="position: absolute; top: 20%; left: calc(50% - 125px)">
+            <div class="team_name">{{teamNames[4]}}</div>
+            <div class="score">{{teamScores[4]}}</div>
+          </div>
+
+          <div class="bracket_oval_board">
+            <div *ngFor="let lightbulb of lightbulbs">
+              <div *ngIf="lightbulb.Display"
+              [class]="lightbulb.Class" 
+              [style.left.px]="345 + lightbulb.X"
+              [style.top.px]="253 + lightbulb.Y"
+              (click)="showLightbulbDetails(lightbulb)"></div>
+            </div> 
+          </div>
+
+          <div class="bracket_box" style="position: absolute; bottom: calc(50% - 17px); left: calc(50% - 125px)" (click)="performLightShow()">
+            <div class="team_name">{{teamNames[6]}}</div>
+          </div>
+
+          <div class="bracket_box" style="position: absolute; bottom: 20%; left: calc(50% - 125px)">
+            <div class="team_name">{{teamNames[5]}}</div>
+            <div class="score">{{teamScores[5]}}</div>
+          </div>
+          <div class="bracket_box" style="position: absolute; bottom: 5%; left: 5%">
+            <div class="team_name">{{teamNames[2]}}</div>
+            <div class="score">{{teamScores[2]}}</div>
+          </div>
+          <div class="bracket_box" style="position: absolute; bottom: 5%; right: 5%">
+            <div class="team_name">{{teamNames[3]}}</div>
+            <div class="score">{{teamScores[3]}}</div>
+          </div>
+        </div>
+    </div>
+  </div>

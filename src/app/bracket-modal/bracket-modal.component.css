@@ -1,0 +1,112 @@
+.bracket_box {
+    position: absolute; 
+    font-size: 20px;
+    width: 250px;
+    background: linear-gradient(to top, rgba(28,87,179,1) 0%, rgba(98,155,234,1) 100%);
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-style: ridge;
+    border-color: rgb(236, 247, 241);
+    border-width: 7px;
+}
+
+.bracket_box .team_name {
+    display: inline-block;
+    margin: auto;
+    color: white;
+    text-shadow: 1px 1px #000000;
+    text-transform: uppercase;
+    height: 100%;
+    font-size: 20px;
+    text-align: center;
+    width: 75%;
+    font-weight: bold;
+    position: relative;
+    top: 0;
+    left: 5px;
+}
+
+.bracket_box .score {
+    display: inline-block;
+    margin: auto;
+    color: white;
+    text-shadow: 1px 1px #000000;
+    text-transform: uppercase;
+    height: 100%;
+    width: 20%;
+    position: relative;
+    right: -5px;
+    bottom: 0;
+    font-weight: bold;
+    border-left: white 1px solid;
+    box-shadow: 1px 1px 5px #555 inset;
+}
+
+.vertical_line {
+    position: absolute;
+    width: 1px;
+    border-right:1px solid #aaa;
+}
+
+.horizontal_line {
+    position: absolute;
+    height: 1px;
+    border-bottom:1px solid #aaa;
+}
+
+.bracket_star {
+    margin: 100px 0;
+    position: relative;
+    display: block;
+    color: rgba(28,87,179,1);
+    width: 0px;
+    height: 0px;
+    border-right:  200px solid transparent;
+    border-bottom: 140px  solid rgba(28,87,179,1);
+    border-left:   200px solid transparent;
+    transform:    rotate(35deg);
+}
+.bracket_star::before {
+    border-bottom: 160px solid rgba(28,87,179,1);
+    border-left: 60px solid transparent;
+    border-right: 60px solid transparent;
+    position: absolute;
+    height: 0;
+    width: 0;
+    top: -90px;
+    left: -130px;
+    display: block;
+    content: '';
+    transform: rotate(-35deg);
+}
+.bracket_star::after {
+    position: absolute;
+    display: block;
+    color: rgba(28,87,179,1);
+    top: 3px;
+    left: -210px;
+    width: 0px;
+    height: 0px;
+    border-right: 200px solid transparent;
+    border-bottom: 140px solid rgba(28,87,179,1);
+    border-left: 200px solid transparent;
+    transform: rotate(-70deg);
+    content: '';
+}
+
+.bracket_oval_board {
+    position: absolute;
+    top: calc(30% + 18px);
+    left: calc(50% - 250px);
+    margin: auto;
+    width: 500px;
+    height: 300px;
+    border-radius: 50%;
+    border-style: ridge;
+    border-color: grey;
+    border-width: 7px;
+    background: linear-gradient(to bottom, rgba(4,37,88,1) 0%, rgba(38,101,204,1) 73%, rgba(4,37,88,1) 100%);
+    display: flex;
+    flex-wrap: wrap;
+}

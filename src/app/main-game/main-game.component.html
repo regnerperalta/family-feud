@@ -1,0 +1,71 @@
+<div style="text-align:center">
+  <img class="title_image" alt="Family Feud" src="/assets/images/title.jpg">
+</div>
+<div style="text-align:center">
+  <img class="subtitle_image" alt="Christmas Edition" src="/assets/images/subtitle.jpg">
+</div>
+
+<div class="score_box game_score" style="border: none;"><div class="inner_score_box">{{gameScore}}</div></div>
+      
+<div class="oval_board">
+  <div *ngFor="let lightbulb of lightbulbs">
+    <div *ngIf="lightbulb.Display"
+    [class]="lightbulb.Class" 
+    [style.left.px]="217 + lightbulb.X"
+    [style.top.px]="185 + lightbulb.Y"
+    (click)="showLightbulbDetails(lightbulb)"></div>
+  </div> 
+</div>
+
+<div class="answer_board">
+  <div *ngFor="let answer of answers" class="answer_box">
+      <div *ngIf="answer.Status == 0" class="empty_answer"></div>
+      <div *ngIf="answer.Status == 1" class="answer_number" (click)="revealAnswer(answer)">{{answer.Number}}</div>
+      <div *ngIf="answer.Status == 2" class="answer_text">{{answer.Text}}</div>
+      <div *ngIf="answer.Status == 2" class="answer_value">{{answer.Value}}</div>
+    </div>
+</div>
+
+<div class="team_name" style="right: calc(50% + 300px);">{{t1Name}}</div>
+<div class="team_name" style="left: calc(50% + 300px);">{{t2Name}}</div>
+
+<div class="team_1">
+  <div class="score_box" style="border-right: none; width: 100px; height: 80px;">
+    <div class="inner_score_box">{{t1Score}}</div>
+  </div>
+</div>
+
+<div class="team_2">
+  <div class="score_box" style="border-left: none; width: 100px; height: 80px;">
+    <div class="inner_score_box">{{t2Score}}</div>
+  </div>
+</div>
+
+<div *ngIf="t1Image" class="team_image_container" style="right: calc(50% + 300px);">
+  <img class="team_image" alt="Team 1 Image" src="{{t1Image}}">
+</div>
+<div *ngIf="t2Image" class="team_image_container" style="left: calc(50% + 300px);">
+  <img class="team_image" alt="Team 2 Image" src="{{t2Image}}">
+</div>
+
+<div #strikes class="strike_box" style="display: none;">
+  <div *ngIf="numberOfStrikes == 1">
+    <img alt="Strike" class="strike" src="/assets/images/X.png">
+  </div>
+  <div *ngIf="numberOfStrikes == 2">
+    <img alt="Strike" class="strike" src="/assets/images/X.png">
+    <img alt="Strike" class="strike" src="/assets/images/X.png">
+  </div>
+  <div *ngIf="numberOfStrikes == 3">
+    <img alt="Strike" class="strike" src="/assets/images/X.png">
+    <img alt="Strike" class="strike" src="/assets/images/X.png">
+    <img alt="Strike" class="strike" src="/assets/images/X.png">
+  </div>
+</div>
+
+<setup-modal [(teamNames)]="teamNames" [(teamScores)]="teamScores" [(teamImages)]="teamImages" [(adults)]="adults"></setup-modal>
+<bracket-modal [(teamNames)]="teamNames" [(teamScores)]="teamScores"></bracket-modal>
+<animation-modal [image]="animation" [show]="showAnimation" (onHide)="hideAnimationModal()"></animation-modal>
+<!--
+<video-modal [url]="animation" [show]="showAnimation" (onHide)="hideAnimationModal()"></video-modal>
+-->
