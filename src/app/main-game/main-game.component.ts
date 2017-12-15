@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Answer } from '../model/answer';
 import { GameServiceService } from '../game.service';
@@ -67,6 +68,7 @@ export class MainGameComponent implements OnInit {
 
   constructor(private renderer: Renderer2,
     private gameService: GameServiceService,
+    private router: Router,
     private lightbulbService: LightbulbService) {}
 
   ngOnInit() {
@@ -226,6 +228,9 @@ export class MainGameComponent implements OnInit {
       if (event.key.toUpperCase() == 'N' && !this.gameActive) this.loadNewGame();
       if (event.key.toUpperCase() == 'R') this.numberOfStrikes = 0;
       if (event.key.toUpperCase() == 'W') this.themeSong.play();
+      if (event.key.toUpperCase() == 'F') {
+        this.router.navigate(['/fast-money']);
+      }
       if (event.key.toUpperCase() == 'T') {
         this.timerActive = true;
         let that = this;

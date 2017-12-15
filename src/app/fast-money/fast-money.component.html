@@ -5,19 +5,21 @@
   <img class="subtitle_image" alt="Christmas Edition" src="/assets/images/subtitle.jpg">
 </div>
 
-<div class="score_box fm_game_score" style="border: none; height: 90px;"><div class="fm_inner_score_box"></div></div>
+<div class="score_box game_score" style="border: none; height: 50px;"><div class="fm_inner_score_box"></div></div>
       
-<div class="fm_oval_board">
+<div class="oval_board" style="border-color: blue;">
   <div *ngFor="let lightbulb of lightbulbs">
     <div *ngIf="lightbulb.Display"
     [class]="lightbulb.Class" 
-    [style.left.px]="446 + lightbulb.X"
-    [style.top.px]="235 + lightbulb.Y"
+    [style.left.px]="217 + lightbulb.X"
+    [style.top.px]="185 + lightbulb.Y"
     (click)="showLightbulbDetails(lightbulb)"></div>
   </div> 
 </div>
 
-<div class="fm_answer_board">
+<!--
+<div class="answer_board" 
+style="border-color: blue; border-radius: 10px; padding: 10px; background: linear-gradient(to bottom, rgba(4,37,88,1) 0%, rgba(38,101,204,1) 73%, rgba(4,37,88,1) 100%);">
   <div class="fm_answers">
     <div *ngFor="let answer of answers" class="fm_answer_box">
       <div class="fm_answer_text">{{answer.Text}}</div>
@@ -29,15 +31,31 @@
     <div class="fm_total_score1">{{total}}</div>
   </div>
 </div>
+-->
+<div class="answer_board2">
+  <div class="fm_answers2">
+    <div *ngFor="let answer of answers" class="fm_answer_box">
+      <div class="fm_answer_text">{{answer.Text}}</div>
+      <div class="fm_answer_value">{{answer.Value}}</div>
+    </div>
+  </div>
+  <div style="position: relative;">
+    <div class="fm_total">TOTAL</div>
+    <div class="fm_total_score1">{{total}}</div>
+  </div>
+</div>
+
 
 <div class="team_1">
-  <div class="team_name">{{t1Name}}</div>
-  <div class="score_box" style="border-right: none; width: 150px; height: 80px;"><div class="fm_inner_score_box"></div></div>
+  <div class="score_box" style="border-color: blue; border-right: none; width: 100px; height: 80px;">
+    <div class="fm_inner_score_box"></div>
+  </div>
 </div>
 
 <div class="team_2">
-  <div class="team_name">{{t2Name}}</div>
-  <div class="score_box" style="border-left: none; width: 150px; height: 80px;"><div class="fm_inner_score_box"></div></div>
+  <div class="score_box" style="border-color: blue; border-left: none; width: 100px; height: 80px;">
+    <div class="fm_inner_score_box"></div>
+  </div>
 </div>
 
-<div class="fm_timer" (click)="startTimer(20)">{{seconds}}</div>
+<div class="timer" (click)="startTimer(20)">{{seconds}}</div>
