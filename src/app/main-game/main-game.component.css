@@ -12,3 +12,16 @@
     width: 200px;
     margin: auto;
 }
+
+.question-box {
+    position: absolute;
+    bottom: 10%;
+    height: 100px;
+    width: 600px;
+    position: absolute;
+    left: 50%;
+    margin-left: -300px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+}

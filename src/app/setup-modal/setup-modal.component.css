@@ -1,55 +1,164 @@
 /* Switch */
 .switch {
+position: relative;
+display: inline-block;
+width: 60px;
+height: 34px;
+}
+
+.switch input {display:none;}
+
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #2196F3;
+-webkit-transition: .4s;
+transition: .4s;
+}
+
+.slider:before {
+position: absolute;
+content: "";
+height: 26px;
+width: 26px;
+left: 4px;
+bottom: 4px;
+background-color: white;
+-webkit-transition: .4s;
+transition: .4s;
+}
+
+input:checked + .slider {
+background-color: #2196F3;
+}
+
+input:focus + .slider {
+box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+-webkit-transform: translateX(26px);
+-ms-transform: translateX(26px);
+transform: translateX(26px);
+}
+
+.slider.round {
+border-radius: 34px;
+}
+
+.slider.round:before {
+border-radius: 50%;
+}
+
+/* Team Name */
+.team-title-div {
+    text-align: center;
+}
+
+.team-name-div {
+    padding-bottom: 20px; 
+    padding-top: 20px;
+}
+
+.team-name-input {
+    padding: 5px; 
+    padding-top: 10px;
+    margin-left: 5px;
+    width: calc(100% - 80px);
+    display: inline-block;
+    position: relative;
+    top: 2px;
+}
+
+.switch-div {
+    padding-bottom: 20px; 
+    padding-top: 20px; 
+    text-align: center;
+}
+
+.switch-label-left {
+    padding-right: 20px; 
+    position: relative; 
+    top: -15px;
+}
+
+.switch-label-right {
+    padding-left: 20px; 
+    position: relative; 
+    top: -15px;
+}
+
+.ok-button-div {
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+
+.image-thumbnail-div {
+    width: 100px;
+    height: 100px;
     position: relative;
     display: inline-block;
-    width: 60px;
-    height: 34px;
-    }
-    
-    .switch input {display:none;}
-    
-    .slider {
-    position: absolute;
+    overflow: hidden;
+    vertical-align: middle;
     cursor: pointer;
+    left: 66px;
+
+}
+
+.image-thumbnail {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    display: inline-block; 
+    vertical-align: middle;
+    margin: 0 4px 0 0;
+    cursor: pointer;
+    position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #2196F3;
-    -webkit-transition: .4s;
-    transition: .4s;
-    }
-    
-    .slider:before {
+}
+/*
+input[type='file'].hidden
+{
+    margin: 0;
+    padding: 0;
     position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-    }
-    
-    input:checked + .slider {
-    background-color: #2196F3;
-    }
-    
-    input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
-    }
-    
-    input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-    }
-    
-    .slider.round {
-    border-radius: 34px;
-    }
-    
-    .slider.round:before {
-    border-radius: 50%;
-    }
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    font-size: 50px;
+    cursor: pointer;
+    opacity: 0;
+    -moz-opacity: 0;
+    filter: Alpha(Opacity=0);
+}
+.hidden{
+    -webkit-appearance: none;
+    position:absolute;
+    top: 0px;
+    right:0px;
+    width: 100%;
+    height: 100%;
+    text-indent: 100em;
+    background-size: cover;
+    overflow: hidden;
+    cursor: pointer;
+    outline: none;
+}
+*/
+
+.center {
+    text-align: center;
+}
+
+.input-file-button {
+    position: relative;
+    left: calc(50% - 160px);
+}

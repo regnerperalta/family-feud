@@ -34,7 +34,6 @@ export class BracketModalComponent implements OnInit {
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
-    console.log("Entred BracketModalComponent.keyEvent(" + event.key.toUpperCase() + ")");
     if (event) {
       if (event.key.toUpperCase() == '[') this.openBracketModal();
       if (event.key.toUpperCase() == ']') this.closeBracketModal();

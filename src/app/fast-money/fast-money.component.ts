@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, Renderer2, ViewChild, HostListener } fro
 import { Observable, Subscription } from 'rxjs/Rx';
 
 import { Answer } from '../model/answer';
-import { GameServiceService } from '../game.service';
+import { GameService } from '../game.service';
 import { LightBulb } from '../model/lightBulb';
 import { LightbulbService } from '../lightbulb.service';
 
@@ -28,7 +28,7 @@ export class FastMoneyComponent implements OnInit {
   private strike: any;
   
   constructor(private renderer: Renderer2,
-    private gameService: GameServiceService,
+    private gameService: GameService,
     private lightbulbService: LightbulbService) {}
 
   ngOnInit() {

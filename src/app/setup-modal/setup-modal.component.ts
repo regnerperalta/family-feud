@@ -1,4 +1,5 @@
-import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild, HostListener } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Renderer2, ViewChild, HostListener, Output } from '@angular/core';
+import { GameService } from '../game.service';
 
 @Component({
   selector: 'setup-modal',
@@ -13,6 +14,10 @@ export class SetupModalComponent implements OnInit {
   @Input() teamScores: number[];
   @Input() teamImages: string[];
   @Input() adults: boolean = true;
+  @Input() showAnimations: boolean = true;
+  @Input() gameService: GameService;
+
+  @Output() onChangeShowAnimation = new EventEmitter<boolean>();
 
   // References to Modals
   @ViewChild('setup_modal') setupModalTag: ElementRef;
@@ -31,7 +36,6 @@ export class SetupModalComponent implements OnInit {
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
-    console.log("Entred AppComponent.keyEvent()");
     if (event) {
       if (event.key.toUpperCase() == 'S') {
         if (this.modalOpen) {
@@ -47,6 +51,39 @@ export class SetupModalComponent implements OnInit {
     let setupModal = this.setupModalTag.nativeElement;
     this.renderer.setStyle(setupModal, 'display', 'block');
     this.modalOpen = true;
+  }
+
+  private loadFile(evt) {
+    if (evt.target.files && evt.target.files[0]) {
+      if (this.isValidFileType(evt.target.files[0].name)) {
+        var reader = new FileReader();
+        reader.onload = () => {
+          var text = reader.result;
+          this.gameService.loadAllQuestions(text);
+        }
+        reader.readAsText(evt.target.files[0]);
+      }
+    }
+  }
+
+  private changedAnimationToggle(evt) {
+    this.onChangeShowAnimation.emit(this.showAnimations);
+  }
+
+  private isValidFileType(fileName: string): boolean {
+    if (fileName && fileName.length > 4) {
+      return fileName.toLowerCase().endsWith('.txt') ||
+            fileName.toLowerCase().endsWith('.json');
+    }
+    return false;
+  }
+
+  private uploadImage(evt: any) {
+    // TODO: Implement this
+  }
+
+  private clickedOnImage(evt: any) {
+    // TODO: Implement or remove this
   }
 
 }

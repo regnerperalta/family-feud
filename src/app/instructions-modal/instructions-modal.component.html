@@ -1,0 +1,43 @@
+<div #instructions_modal class="modal">
+  <div class="modal_bg abs"></div>
+  <div class="modal_content abs">
+      <div class="modal_title">Instructions <span class="close_btn" (click)="closeModal()">&times;</span></div>
+      <div class="container" style="overflow-y: scroll;">
+        <div class="col-xs-12 col-sm-12 instructions-div">
+          <div>Setup:</div>
+          <ul>
+            <li>You need to set your monitor to this resolution: 1024 x 768</li>
+            <li>Load the page</li>
+            <li>Go into setup (Press 'S')</li>
+            <li>Update the team names (if desired)</li>
+            <li>Upload the questions file (see example)</li>
+            <li>VERY IMPORTANT: All question files must follow the format specified in the example</li>
+          </ul>
+          <div>Key controls:</div>
+          <ul>
+              <li>S - Setup (open/close)</li>
+              <li>? - Help (open/close)</li>
+              <li>W - Play theme song</li>
+              <li>N - New Game</li>
+              <li>Q - Next Question</li>
+              <li>Y - Display/Hide Question</li>
+              <li>1 .. 8 - Reveal the appropriate answer</li>
+              <li>X - Strike</li>
+              <li>A - Team 1 Wins</li>
+              <li>B - Team 2 Wins</li>
+              <li>R - Reset the Number of Strikes to 0</li>
+              <li>- - Reduce Number of Strikes (when done by accident)</li>
+              <li>T - Start timer</li>
+              <li>[ - Open Bracket</li>
+              <li>] - Close bracket</li>
+              <li>O - Toggle All Lights On/Off</li>
+              <li>Z - Blink</li>
+              <li>U - Bottom to Top Light Effect</li>
+              <li>L - Left to Right Light Effect</li>
+              <li>R - Right to Left Light Effect</li>
+              <li>D - Top to Bottom Light Effect</li>
+          </ul>
+        </div>
+      </div>
+  </div>
+</div>

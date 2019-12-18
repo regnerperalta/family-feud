@@ -8,6 +8,9 @@ export class LightbulbService {
   public TOGGLE_SPEED: number = 50;
   public BLINK_SPEED: number = 300;
   public NUMBER_OF_BLINKS: number = 10;
+  public NUMBER_OF_COLUMNS: number = 29;
+  public NUMBER_OF_ROWS: number = 20;
+  public DISTANCE_BETWEEN_LIGHTS: number = 20
 
   constructor() { }
   
@@ -81,9 +84,9 @@ export class LightbulbService {
   }
 
   public initializeLightbulbs(): LightBulb[] {
-    let numberOfColumns: number = 29;
-    let numberOfRows: number = 20;
-    let distanceBetweenLights: number = 20;
+    let numberOfColumns: number = this.NUMBER_OF_COLUMNS;
+    let numberOfRows: number = this.NUMBER_OF_ROWS;
+    let distanceBetweenLights: number = this.DISTANCE_BETWEEN_LIGHTS;
     let lightbulbs = [];
     for (let i = 0; i < (numberOfColumns * numberOfRows); i++) {
       let lightbulb = 
@@ -181,7 +184,7 @@ export class LightbulbService {
 
   public toggleLeftToRight(lightbulbs: LightBulb[], column: number, speed: number) {
     //console.log("Entered moveLeftToRight(" + column + ")");
-    if (column >= 50) {
+    if (column >= this.NUMBER_OF_COLUMNS) {
       return;
     }
     this.toggleColumn(lightbulbs, column);
@@ -200,15 +203,15 @@ export class LightbulbService {
   }
 
   public toggleRow(lightbulbs: LightBulb[], row: number) {
-    //console.log("Entred toggleRow(" + row + ")");
-    for (let i = (row * 50); i < ((row + 1) * 50); i++) {
+    console.log("Entred toggleRow(" + row + ")");
+    for (let i = (row * this.NUMBER_OF_COLUMNS); i < ((row + 1) * this.NUMBER_OF_COLUMNS); i++) {
       this.toggleLightbulb(lightbulbs, i);
     }
   }
 
   public toggleColumn(lightbulbs: LightBulb[], column: number) {
     //console.log("Entred toggleAllLights()");
-    for (let i = column; i < (50 * 30); i+=50) {
+    for (let i = column; i < (this.NUMBER_OF_COLUMNS * this.NUMBER_OF_ROWS); i+=this.NUMBER_OF_COLUMNS) {
       this.toggleLightbulb(lightbulbs, i);
     }
   }
@@ -224,7 +227,7 @@ export class LightbulbService {
 
   public toggleTopToBottom(lightbulbs: LightBulb[], row: number, speed: number) {
     //console.log("Entered toggleTopToBottom(" + row + ")");
-    if (row > 30) {
+    if (row > this.NUMBER_OF_COLUMNS) {
       return;
     }
     this.toggleRow(lightbulbs, row);

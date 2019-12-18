@@ -2,7 +2,7 @@
   <img class="title_image" alt="Family Feud" src="/assets/images/title.jpg">
 </div>
 <div style="text-align:center">
-  <img class="subtitle_image" alt="Christmas Edition" src="/assets/images/subtitle.jpg">
+  <img class="subtitle_image" alt="Edición Navideña" src="/assets/images/subtitle2.jpg">
 </div>
 
 <div class="score_box game_score" style="border: none;"><div class="inner_score_box">{{gameScore}}</div></div>
@@ -63,7 +63,14 @@
   </div>
 </div>
 
-<setup-modal [(teamNames)]="teamNames" [(teamScores)]="teamScores" [(teamImages)]="teamImages" [(adults)]="adults"></setup-modal>
+<div *ngIf="showQuestion && question" class="question-box">
+  {{question.QuestionText}}
+</div>
+<!--
+<audio style="display: none;"></audio>
+-->
+<setup-modal [(teamNames)]="teamNames" [(teamScores)]="teamScores" [(teamImages)]="teamImages" [(adults)]="adults" [(gameService)]="gameService" [(showAnimations)]="showAnimations" (onChangeShowAnimation)="changeShowAnimation($event)"></setup-modal>
+<instructions-modal></instructions-modal>
 <bracket-modal [(teamNames)]="teamNames" [(teamScores)]="teamScores"></bracket-modal>
 <animation-modal [image]="animation" [duration]="animationDuration" [show]="showAnimation" (onHide)="hideAnimationModal()"></animation-modal>
 <!--
